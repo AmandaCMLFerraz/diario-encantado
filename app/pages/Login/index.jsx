@@ -15,6 +15,10 @@ const Login = () => {
         navigation.navigate("Home");
     };
 
+    const handleNavRecuperacao = () => {
+        navigation.navigate("RecuperacaoSenha")
+    }
+
     return (
         <View style={styles.container}>
             <Image source={require("../../../assets/images/Logo.png")} style={styles.logo}/>
@@ -28,7 +32,7 @@ const Login = () => {
                     title="Fazer Login"
                     onPress={handleNavHome}
                 />
-                <Text style={styles.textPassword}>Esqueceu a senha?</Text>
+                <Text style={styles.textPassword} onPress={handleNavRecuperacao}>Esqueceu a senha?</Text>
                 <View style={styles.line} />
                 
                 <View style={styles.containerText}>
