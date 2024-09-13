@@ -56,13 +56,13 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         alignItems: "center",
     },
-    containerForm: {
-        marginTop: 25,
-    },
     logo: {
         height: 160,
         width: "100%",
         borderBottomRightRadius: "150%",
+    },
+    containerForm: {
+        marginTop: 25,
     },
     textInput: {
         fontSize: 18,

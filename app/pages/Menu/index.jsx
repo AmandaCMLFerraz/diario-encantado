@@ -1,6 +1,4 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Home from '../Home/index'

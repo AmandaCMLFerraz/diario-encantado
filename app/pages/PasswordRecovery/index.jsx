@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import Input from '../../components/Input'
 import ButtonWaterGreen from '../../components/Button'
 
-const RecuperacaoSenha = () => {
+const passwordRecovery = () => {
 
     return (
         <View style={styles.container}>
@@ -36,27 +36,21 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         alignItems: "center",
     },
+    logo: {
+        height: 160,
+        width: "100%",
+        borderBottomRightRadius: "150%",
+    },
     containerForm: {
         marginTop: 100,
     },
     textForm: {
         marginTop: 25,
     },
-    logo: {
-        height: 160,
-        width: "100%",
-        borderBottomRightRadius: "150%",
-    },
     textInput: {
         fontSize: 18,
         marginLeft: 20,
     },
-    line: {
-        width: "80%",
-        height: 1,
-        backgroundColor: "#51B59F",
-        margin: 25,
-    },
 });
 
-export default RecuperacaoSenha
+export default passwordRecovery

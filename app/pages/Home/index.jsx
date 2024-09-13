@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { useNavigation } from 'expo-router';
 
 import ButtonWaterGreen from '../../components/Button';
@@ -8,20 +8,20 @@ const Home = () => {
 
     const navigation = useNavigation();
 
-    const handleNavEscolas = () => {
-        navigation.navigate("Escolas");
+    const handleNavSchools = () => {
+        navigation.navigate("Schools");
     };
 
-    const handleNavTurmas = () => {
-        navigation.navigate("Turmas");
+    const handleNavClasses = () => {
+        navigation.navigate("Classes");
     };
 
-    const handleNavAlunos = () => {
-        navigation.navigate("Alunos");
+    const handleNavStudents = () => {
+        navigation.navigate("Students");
     };
 
-    const handleNavAtividades = () => {
-        navigation.navigate("Atividades");
+    const handleNavActivities = () => {
+        navigation.navigate("Activities");
     };
 
     return (
@@ -31,25 +31,25 @@ const Home = () => {
                 <Image source={require("../../../assets/images/Escolas.jpeg")} style={styles.images}/>
                 <ButtonWaterGreen 
                     title="Escolas"
-                    onPress={handleNavEscolas} />
+                    onPress={handleNavSchools} />
             </View>
             <View style={styles.containerOptions}>
                 <Image source={require("../../../assets/images/Turmas.jpeg")} style={styles.images}/>
                 <ButtonWaterGreen
                     title="Turmas"
-                    onPress={handleNavTurmas} />
+                    onPress={handleNavClasses} />
             </View>
             <View style={styles.containerOptions}>
                 <Image source={require("../../../assets/images/Alunos.jpeg")} style={styles.images}/>
                 <ButtonWaterGreen
                     title="Alunos"
-                    onPress={handleNavAlunos} />
+                    onPress={handleNavStudents} />
             </View>
             <View style={styles.containerOptions}>
                 <Image source={require("../../../assets/images/Atividades.png")} style={styles.images}/>
                 <ButtonWaterGreen
                     title="Atividades"
-                    onPress={handleNavAtividades} />
+                    onPress={handleNavActivities} />
             </View>
         </View>
     );

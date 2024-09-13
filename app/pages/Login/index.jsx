@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
 import { Button } from '@rneui/themed';
 import { useNavigation } from 'expo-router';
