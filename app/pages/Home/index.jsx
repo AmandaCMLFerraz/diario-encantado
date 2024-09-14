@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Image } from 'react-native';
 import { useNavigation } from 'expo-router';
 
-import ButtonWaterGreen from '../../components/Button';
+import ButtonWaterGreen from '../../components/ButtonWaterGreen';
 
 const Home = () => {
 

@@ -3,9 +3,11 @@ import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from '@rneui/themed';
 
 import Input from '../../../components/Input';
-import ButtonWaterGreen from '../../../components/Button';
+import ButtonWaterGreen from '../../../components/ButtonWaterGreen';
 
-import schoolTable from '../../../database/schoolTable';
+import { insertSchool} from '../../../database/schoolTable';
+import { initializeDatabase } from '../../../database/initializeDatabase';
+import { useNavigation } from 'expo-router';
 
 const SchoolRegistration = () => {
 
@@ -16,6 +18,8 @@ const SchoolRegistration = () => {
     const [neighborhood, setNeighborhood] = useState('');
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
+
+    const navigation = useNavigation();
 
     useEffect(() => {
         const init = async () => {
@@ -29,16 +33,21 @@ const SchoolRegistration = () => {
         init();
     }, []);
 
-const saveSchool = async () => {
-    try {
-        const { insert } = schoolTable();
-
-        const result = await insert(id, nome, telefone, cep, rua, bairro, cidade, estado);
-        console.log('Escola salva com sucesso!', result);
-    } catch (error) {
-        console.error('Erro ao salvar escola', error);
-    }
-};
+    const saveSchool = async () => {
+        if (!name.trim()){
+            console.error('O nome da escola não pode estar em branco');
+            return;
+        }
+        
+        try {
+            const result = await insertSchool(name, telephone, cep, street, neighborhood, city, uf);
+            console.log('Escola salva com sucesso!', result);
+            navigation.navigate('Schools');
+        } catch (error) {
+            console.error('Erro ao salvar escola', error);
+        }
+    };
+    
 
 return (
     <View style={styles.container}>

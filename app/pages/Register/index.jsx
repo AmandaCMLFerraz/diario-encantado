@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import { useNavigation } from 'expo-router';
 
 import Input from '../../components/Input'
-import ButtonWaterGreen from '../../components/Button'
+import ButtonWaterGreen from '../../components/ButtonWaterGreen'
 
 const Register = () => {
 

@@ -5,7 +5,7 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
 import Schools from '../pages/Schools/index'
-import PasswordRecovery from '../pages/passwordRecovery'
+import PasswordRecovery from '../pages/PasswordRecovery'
 import SchoolRegistration from '../pages/Schools/SchoolRegistration'
 
 const Stack = createNativeStackNavigator();

@@ -1,24 +1,28 @@
 import * as SQLite from 'expo-sqlite';
 
-export async function initializeDatabase() {
+let db; // Definir a variável `db` no escopo global
 
-    const db = await SQLite.openDatabaseSync('databaseDiario');
+export const initializeDatabase = async () => {
+    db = await SQLite.openDatabaseAsync('databaseDiario'); // Usar a versão assíncrona
 
     await db.execAsync(`
         PRAGMA journal_mode = WAL;
         CREATE TABLE IF NOT EXISTS escolas (
-            id INTEGER PRIMARY KEY NOT NULL, 
-            nome TEXT NOT NULL
-            telefone VARCHAR(20),
-            cep VARCHAR(10),
+            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            nome TEXT NOT NULL,
+            telefone TEXT,
+            cep TEXT,
             rua TEXT,
             bairro TEXT,
             cidade TEXT, 
-            estado TEXT, 
+            estado TEXT
         );
     `);
 }
 
 export function getDatabase() {
+    if (!db) {
+        throw new Error('Database has not been initialized. Call initializeDatabase first.');
+    }
     return db;
 }

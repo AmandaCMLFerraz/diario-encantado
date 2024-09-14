@@ -2,9 +2,9 @@ import React from 'react'
 import { View, Text, StyleSheet, Image } from 'react-native';
 
 import Input from '../../components/Input'
-import ButtonWaterGreen from '../../components/Button'
+import ButtonWaterGreen from '../../components/ButtonWaterGreen'
 
-const passwordRecovery = () => {
+const PasswordRecovery = () => {
 
     return (
         <View style={styles.container}>
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default passwordRecovery
+export default PasswordRecovery
