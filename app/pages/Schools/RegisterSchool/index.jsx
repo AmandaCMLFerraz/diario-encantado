@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, Alert } from 'react-native';
 import { Button } from '@rneui/themed';
 
 import Input from '../../../components/Input';
@@ -8,8 +8,9 @@ import ButtonWaterGreen from '../../../components/ButtonWaterGreen';
 import { insertSchool} from '../../../database/schoolTable';
 import { initializeDatabase } from '../../../database/initializeDatabase';
 import { useNavigation } from 'expo-router';
+import ApiCep from '../../../services/apiCep';
 
-const SchoolRegistration = () => {
+const RegisterSchool = () => {
 
     const [name, setName] = useState('');
     const [telephone, setTelephone] = useState('');
@@ -20,6 +21,22 @@ const SchoolRegistration = () => {
     const [uf, setUf] = useState('');
 
     const navigation = useNavigation();
+
+    const buscarCep = async () => {
+        if(cep === ""){
+            Alert.alert('CEP inválido.')
+            setCep('')
+        }
+        try{
+            const response = await ApiCep.get(`/${cep}/json/`)
+            setStreet(response.data.logradouro)
+            setNeighborhood(response.data.bairro)
+            setCity(response.data.localidade)
+            setUf(response.data.uf)
+        }catch(error){
+            console.log('erro' + error)
+        }
+    }
 
     useEffect(() => {
         const init = async () => {
@@ -52,6 +69,7 @@ const SchoolRegistration = () => {
 return (
     <View style={styles.container}>
         <Text style={styles.title}>Cadastro de escola</Text>
+        <View style={styles.line}/>
         <View style={styles.containerForm}>
             <Text style={styles.textInput}>Nome:</Text>
             <Input
@@ -77,6 +95,7 @@ return (
                     title="Buscar"
                     buttonStyle={styles.button}
                     titleStyle={styles.textButton}
+                    onPress={buscarCep}
                 />
             </View>
         </View>
@@ -123,8 +142,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     title: {
-        marginTop: 25,
+        margin: 25,
         fontSize: 20,
+    },
+    line: {
+        width: "90%",
+        height: 1,
+        backgroundColor: "#51B59F",
     },
     containerForm: {
         marginTop: 25,
@@ -134,11 +158,11 @@ const styles = StyleSheet.create({
     },
     input: {
         height: 40,
-        width: 150,
+        width: 200,
         padding: 10,
         borderWidth: 0.5,
         borderColor: "#3F3F3C",
-        borderRadius: "50%",
+        borderRadius: 20,
         fontSize: 18,
         marginRight: 25,
     },
@@ -150,7 +174,7 @@ const styles = StyleSheet.create({
         width: 80,
         height: 40,
         backgroundColor: "#51B59F",
-        borderRadius: "50%",
+        borderRadius: 20,
     },
     textButton: {
         fontSize: 18,
@@ -158,4 +182,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SchoolRegistration
+export default RegisterSchool

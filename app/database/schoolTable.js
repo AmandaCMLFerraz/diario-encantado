@@ -39,7 +39,7 @@ export async function deleteSchools(id) {
     }
 }
 
-export async function updateSchool(id, name, telephone, cep, street, neighborhood, city, uf) {
+export async function updateSchool(name, telephone, cep, street, neighborhood, city, uf) {
     const db = getDatabase();
     try {
         const result = await db.runAsync(

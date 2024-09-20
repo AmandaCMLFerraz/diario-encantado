@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import Input from '../../components/Input'
 import ButtonWaterGreen from '../../components/ButtonWaterGreen'
 
-const PasswordRecovery = () => {
+const RecoverPassword = () => {
 
     return (
         <View style={styles.container}>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     logo: {
         height: 160,
         width: "100%",
-        borderBottomRightRadius: "150%",
+        borderBottomRightRadius: 150,
     },
     containerForm: {
         marginTop: 100,
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PasswordRecovery
+export default RecoverPassword

@@ -19,11 +19,11 @@ const Input = ({ placeholder, keyboardType, secureTextEntry, value, onChangeText
 const styles = StyleSheet.create({
     input: {
         height: 40,
-        width: 250,
+        width: 300,
         padding: 10,
         borderWidth: 0.5,
         borderColor: "#3F3F3C",
-        borderRadius: "50%",
+        borderRadius: 20,
         fontSize: 18,
     },
 });

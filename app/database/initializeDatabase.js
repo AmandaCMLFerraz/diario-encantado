@@ -7,10 +7,39 @@ export const initializeDatabase = async () => {
 
     await db.execAsync(`
         PRAGMA journal_mode = WAL;
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            nome TEXT NOT NULL,
+            email TEXT NOT NULL UNIQUE,
+            telefone TEXT,
+            senha TEXT NOT NULL,
+            confSenha TEXT NOT NULL
+        );
+    `);
+
+    await db.execAsync(`
+        PRAGMA journal_mode = WAL;
         CREATE TABLE IF NOT EXISTS escolas (
             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
             nome TEXT NOT NULL,
             telefone TEXT,
+            cep TEXT,
+            rua TEXT,
+            bairro TEXT,
+            cidade TEXT, 
+            estado TEXT
+        );
+    `);
+
+    await db.execAsync(`
+        PRAGMA journal_mode = WAL;
+        CREATE TABLE IF NOT EXISTS alunos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            nome TEXT NOT NULL,
+            escola TEXT NOT NULL,
+            turma TEXT NOT NULL,
+            nomeResponsavel TEXT NOT NULL,
+            telefoneResponsavel TEXT,
             cep TEXT,
             rua TEXT,
             bairro TEXT,

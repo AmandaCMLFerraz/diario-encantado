@@ -5,8 +5,11 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Home from '../pages/Home'
 import Schools from '../pages/Schools/index'
-import PasswordRecovery from '../pages/PasswordRecovery'
-import SchoolRegistration from '../pages/Schools/SchoolRegistration'
+import RecoverPassword from '../pages/RecoverPassword'
+import RegisterSchool from '../pages/Schools/RegisterSchool'
+import Students from '../pages/Students'
+import RegisterStudent from '../pages/Students/RegisterStudent'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -17,8 +20,10 @@ export default function Routes () {
             <Stack.Screen name="Register" component={Register} />
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Schools" component={Schools} />
-            <Stack.Screen name="PasswordRecovery" component={PasswordRecovery} />
-            <Stack.Screen name="SchoolRegistration" component={SchoolRegistration} />
+            <Stack.Screen name="RecoverPassword" component={RecoverPassword} />
+            <Stack.Screen name="RegisterSchool" component={RegisterSchool} />
+            <Stack.Screen name="Students" component={Students} />
+            <Stack.Screen name="RegisterStudent" component={RegisterStudent} />
         </Stack.Navigator>
     );
 }

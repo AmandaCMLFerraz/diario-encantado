@@ -15,8 +15,8 @@ const Login = () => {
         navigation.navigate("Home");
     };
 
-    const handleNavRecuperacao = () => {
-        navigation.navigate("RecuperacaoSenha")
+    const handleNavRecoverPassword = () => {
+        navigation.navigate("RecoverPassword")
     }
 
     return (
@@ -32,7 +32,7 @@ const Login = () => {
                     title="Fazer Login"
                     onPress={handleNavHome}
                 />
-                <Text style={styles.textPassword} onPress={handleNavRecuperacao}>Esqueceu a senha?</Text>
+                <Text style={styles.textPassword} onPress={handleNavRecoverPassword}>Esqueceu a senha?</Text>
                 <View style={styles.line} />
                 
                 <View style={styles.containerText}>
@@ -62,15 +62,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#51B59F",
         width: "100%",
         alignItems: "center",
-        borderTopLeftRadius: "150%",
+        borderTopLeftRadius: 150,
     },
     input: {
-        width: 250,
+        width: 300,
         height: 40,
         padding: 10,
         marginBottom: 25,
         backgroundColor: "#ffffff",
-        borderRadius: "50%",
+        borderRadius: 20,
         fontSize: 18,
     },
     button: {
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         height: 40,
         marginBottom: 25,
         backgroundColor: "#ffffff",
-        borderRadius: "50%",
+        borderRadius: 20,
     },
     buttonText: {
         fontWeight: "600",
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         color: "#ffffff",
     },
     line: {
-        width: "80%",
+        width: "90%",
         height: 1,
         backgroundColor: "#ffffff",
         margin: 25,

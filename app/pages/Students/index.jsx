@@ -4,51 +4,51 @@ import { useFocusEffect, useNavigation } from 'expo-router';
 import { useState, useCallback } from 'react';
 import { Icon } from '@rneui/themed';
 
-import { deleteSchools, getSchools } from '../../database/schoolTable';
+import { deleteStudent, getStudent } from '../../database/studentTable';
 import { initializeDatabase } from '../../database/initializeDatabase';
 
-const Schools = () => {
-    const [schools, setSchools] = useState([]);
+const Students = () => {
+    const [student, setStudent] = useState([]);
     const navigation = useNavigation();
 
-    const fetchSchools = useCallback(async () => {
+    const fetchStudents = useCallback(async () => {
         try {
             // Inicializar o banco de dados
             await initializeDatabase();
 
             // Buscar as escolas
-            const result = await getSchools();
+            const result = await getStudent();
             console.log('foi', result);
-            setSchools(result);
+            setStudent(result);
         } catch (error) {
-            console.error('Error fetching schools:', error);
+            console.error('Error fetching students:', error);
         }
     }, []);
 
     useFocusEffect(
         useCallback(() => {
-            fetchSchools();
-        }, [fetchSchools])
+            fetchStudents();
+        }, [fetchStudents])
     );
 
-    const handleDeleteSchool = async (id) => {
+    const handleDeleteStudent = async (id) => {
         try {
-            await deleteSchools(id);
-            fetchSchools(); // Atualiza a lista após exclusão
+            await deleteStudent(id);
+            fetchStudents(); // Atualiza a lista após exclusão
         } catch (error) {
-            console.error('Erro ao excluir escola:', error);
+            console.error('Erro ao excluir aluno:', error);
         }
     };
 
-    const handleNavRegisterSchool = () => {
-        navigation.navigate("RegisterSchool");
+    const handleNavRegisterStudent = () => {
+        navigation.navigate("RegisterStudent");
     };
 
-    const handleNavEditSchool = () => {
-        navigation.navigate("EditSchool");
-    };
+    // const handleNavEditSchool = () => {
+    //     navigation.navigate("EditSchool");
+    // };
 
-    const renderSchool = ({ item }) => {
+    const renderStudent = ({ item }) => {
         return (
             <View style={styles.container}>
                 <View style={styles.containerList}>
@@ -57,31 +57,31 @@ const Schools = () => {
                         <Icon
                             name='edit'
                             color='#3F3F3C'
-                            onPress={handleNavEditSchool}
+                            // onPress={handleNavEditStudent}
                         />
                         <Icon
                             name='delete'
                             color='#3F3F3C'
-                            onPress={() => handleDeleteSchool(item.id)}
+                            onPress={() => handleDeleteStudent(item.id)}
                         />
                     </View>
                 </View>
-                <View style={styles.line}/>
+                <View style={styles.line} />
             </View>
         );
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Escolas</Text>
+            <Text style={styles.title}>Alunos</Text>
             <View style={styles.line} />
             <FlatList
-                data={schools}
-                renderItem={renderSchool}
-                keyExtractor={(item) => item.id.toString()} // Supondo que cada escola tem um 'id'
+                data={student}
+                renderItem={renderStudent}
+                keyExtractor={(item) => item.id.toString()}
             />
             <View style={styles.containerButton}>
-                <ButtonPlus onPress={handleNavRegisterSchool} />
+                <ButtonPlus onPress={handleNavRegisterStudent} />
             </View>
         </View>
     );
@@ -126,4 +126,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default Schools;
+export default Students;

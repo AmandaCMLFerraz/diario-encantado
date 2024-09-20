@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         backgroundColor: "#51B59F",
-        borderRadius: "50%",
+        borderRadius: 50,
     }
 });
 
