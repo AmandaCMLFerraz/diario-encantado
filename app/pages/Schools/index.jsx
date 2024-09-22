@@ -6,6 +6,7 @@ import { Icon } from '@rneui/themed';
 
 import { deleteSchools, getSchools } from '../../database/schoolTable';
 import { initializeDatabase } from '../../database/initializeDatabase';
+import Header from '../../components/Header';
 
 const Schools = () => {
     const [schools, setSchools] = useState([]);
@@ -72,18 +73,21 @@ const Schools = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Escolas</Text>
-            <View style={styles.line} />
-            <FlatList
-                data={schools}
-                renderItem={renderSchool}
-                keyExtractor={(item) => item.id.toString()} // Supondo que cada escola tem um 'id'
-            />
-            <View style={styles.containerButton}>
-                <ButtonPlus onPress={handleNavRegisterSchool} />
+        <>
+            <Header />
+            <View style={styles.container}>
+                <Text style={styles.title}>Escolas</Text>
+                <View style={styles.line} />
+                <FlatList
+                    data={schools}
+                    renderItem={renderSchool}
+                    keyExtractor={(item) => item.id.toString()} // Supondo que cada escola tem um 'id'
+                />
+                <View style={styles.containerButton}>
+                    <ButtonPlus onPress={handleNavRegisterSchool} />
+                </View>
             </View>
-        </View>
+        </>
     );
 };
 

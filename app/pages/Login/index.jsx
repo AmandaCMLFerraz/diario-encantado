@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TextInput } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, ScrollView } from 'react-native';
 import { Button } from '@rneui/themed';
 import { useNavigation } from 'expo-router';
 
@@ -23,22 +23,24 @@ const Login = () => {
         <View style={styles.container}>
             <Image source={require("../../../assets/images/Logo.png")} style={styles.logo}/>
             <View style={styles.containerLogin}>
-                <TextInput style={styles.input} placeholder="E-mail" placeholderTextColor="#9FA3A6" keyboardType='email-address'/>
-                <TextInput style={styles.input} placeholder="Senha" placeholderTextColor="#9FA3A6"
-                secureTextEntry={true}  />
-                <Button 
-                    buttonStyle={styles.button} 
-                    titleStyle={styles.buttonText}
-                    title="Fazer Login"
-                    onPress={handleNavHome}
-                />
-                <Text style={styles.textPassword} onPress={handleNavRecoverPassword}>Esqueceu a senha?</Text>
-                <View style={styles.line} />
-                
-                <View style={styles.containerText}>
-                    <Text style={styles.text}>Não tem conta?</Text>
-                    <Text style={styles.textRegister} onPress={handleNavRegister}>Cadastre-se</Text>
-                </View>
+                <ScrollView contentContainerStyle={styles.scrollContainer}>
+                    <TextInput style={styles.input} placeholder="E-mail" placeholderTextColor="#9FA3A6" keyboardType='email-address'/>
+                    <TextInput style={styles.input} placeholder="Senha" placeholderTextColor="#9FA3A6"
+                    secureTextEntry={true}  />
+                    <Button 
+                        buttonStyle={styles.button} 
+                        titleStyle={styles.buttonText}
+                        title="Fazer Login"
+                        onPress={handleNavHome}
+                    />
+                    <Text style={styles.textPassword} onPress={handleNavRecoverPassword}>Esqueceu a senha?</Text>
+                    <View style={styles.line} />
+                    
+                    <View style={styles.containerText}>
+                        <Text style={styles.text}>Não tem conta?</Text>
+                        <Text style={styles.textRegister} onPress={handleNavRegister}>Cadastre-se</Text>
+                    </View>
+                </ScrollView>
             </View>
         </View>
     );
@@ -62,7 +64,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#51B59F",
         width: "100%",
         alignItems: "center",
+        justifyContent: "center", // Adicionado para centralizar verticalmente
         borderTopLeftRadius: 150,
+    },
+    scrollContainer: {
+        flexGrow: 1,
+        justifyContent: "center", // Centraliza o conteúdo verticalmente
+        alignItems: "center",
+        paddingBottom: 20, // Ajuste conforme necessário
     },
     input: {
         width: 300,
@@ -96,6 +105,7 @@ const styles = StyleSheet.create({
         margin: 25,
     },
     containerText: {
+        flex: 1,
         alignItems: "center",
     },
     text: {
