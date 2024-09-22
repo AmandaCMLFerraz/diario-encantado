@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { useNavigation } from 'expo-router';
 
 import Input from '../../components/Input'
@@ -30,17 +30,29 @@ const Register = () => {
     }, []);
 
     const saveUser = async () => {
-        if (password != confirmPassword){
-            console.error('As senhas não são compativeis.');
+        if (password !== confirmPassword) {
+            Alert.alert('Erro', 'As senhas não são compatíveis.');
             return;
         }
         
+        const trimmedName = name.trim();
+        const trimmedEmail = email.trim().toLowerCase(); 
+        const trimmedTelephone = telephone.trim();
+        const trimmedPassword = password.trim();
+    
         try {
-            const result = await insertUser(name, email, telephone, password, confirmPassword);
-            console.log('Usuário salva com sucesso!', result);
+            console.log('Salvando usuário com os seguintes dados:', {
+                nome: trimmedName,
+                email: trimmedEmail,
+                telefone: trimmedTelephone,
+                senha: trimmedPassword,
+            });
+            const result = await insertUser(trimmedName, trimmedEmail, trimmedTelephone, trimmedPassword);
+            console.log('Usuário salvo com sucesso:', { nome: trimmedName, email: trimmedEmail, telefone: trimmedTelephone });
             navigation.navigate('Login');
         } catch (error) {
             console.error('Erro ao salvar usuário', error);
+            Alert.alert('Erro', 'Ocorreu um erro ao registrar o usuário.');
         }
     };
 
@@ -51,43 +63,45 @@ const Register = () => {
     return (
         <View style={styles.container}>
             <Image source={require("../../../assets/images/LogoRegister.png")} style={styles.logo}/>
-            <View style={styles.containerForm}>
-                <Text style={styles.textInput}>Nome completo:</Text>
-                <Input 
-                    value={name}
-                    onChangeText={setName}
-                />
-            </View>
-            <View style={styles.containerForm}>
-                <Text style={styles.textInput}>E-mail:</Text>
-                <Input keyboardType="email-address"
-                    value={email}
-                    onChangeText={setEmail}
-                />
-            </View>
-            <View style={styles.containerForm}>
-                <Text style={styles.textInput}>Telefone:</Text>
-                <Input keyboardType="tel"
-                    value={telephone}
-                    onChangeText={setTelephone}
-                />
-            </View>
-            <View style={styles.containerForm}>
-                <Text style={styles.textInput}>Senha:</Text>
-                <Input 
-                    secureTextEntry={true}
-                    value={password}
-                    onChangeText={setPassword}
-                />
-            </View>
-            <View style={styles.containerForm}>
-                <Text style={styles.textInput}>Confirmar senha:</Text>
-                <Input 
-                    secureTextEntry={true}
-                    value={confirmPassword}
-                    onChangeText={setConfirmPassword}
-                />
-            </View>
+            <ScrollView>
+                <View style={styles.containerForm}>
+                    <Text style={styles.textInput}>Nome completo:</Text>
+                    <Input 
+                        value={name}
+                        onChangeText={setName}
+                    />
+                </View>
+                <View style={styles.containerForm}>
+                    <Text style={styles.textInput}>E-mail:</Text>
+                    <Input keyboardType="email-address"
+                        value={email}
+                        onChangeText={setEmail}
+                    />
+                </View>
+                <View style={styles.containerForm}>
+                    <Text style={styles.textInput}>Telefone:</Text>
+                    <Input keyboardType="tel"
+                        value={telephone}
+                        onChangeText={setTelephone}
+                    />
+                </View>
+                <View style={styles.containerForm}>
+                    <Text style={styles.textInput}>Senha:</Text>
+                    <Input 
+                        secureTextEntry={true}
+                        value={password}
+                        onChangeText={setPassword}
+                    />
+                </View>
+                <View style={styles.containerForm}>
+                    <Text style={styles.textInput}>Confirmar senha:</Text>
+                    <Input 
+                        secureTextEntry={true}
+                        value={confirmPassword}
+                        onChangeText={setConfirmPassword}
+                    />
+                </View>
+            </ScrollView>
             <ButtonWaterGreen 
                 title="Registrar-se"
                 onPress={saveUser}
@@ -129,6 +143,7 @@ const styles = StyleSheet.create({
     },
     containerText: {
         alignItems: "center",
+        marginBottom: 25,
     },
     text: {
         marginBottom: 5,

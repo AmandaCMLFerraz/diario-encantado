@@ -14,11 +14,11 @@ export async function insertUser(name, email, telephone, password, confirmPasswo
     }
 }
 
-export async function getUser() {
+export async function getUser(email) {
     const db = getDatabase();
     try {
-        const allRows = await db.getAllAsync('SELECT * FROM users');
-        return allRows;
+        const user = await db.getFirstAsync('SELECT * FROM users WHERE email = ?', [email]);
+        return user;
     } catch (error) {
         console.error('Erro ao buscar usuário:', error);
         throw error;
