@@ -30,29 +30,17 @@ const Register = () => {
     }, []);
 
     const saveUser = async () => {
-        if (password !== confirmPassword) {
-            Alert.alert('Erro', 'As senhas não são compatíveis.');
+        if (password != confirmPassword){
+            console.error('As senhas não são compativeis.');
             return;
         }
         
-        const trimmedName = name.trim();
-        const trimmedEmail = email.trim().toLowerCase(); 
-        const trimmedTelephone = telephone.trim();
-        const trimmedPassword = password.trim();
-    
         try {
-            console.log('Salvando usuário com os seguintes dados:', {
-                nome: trimmedName,
-                email: trimmedEmail,
-                telefone: trimmedTelephone,
-                senha: trimmedPassword,
-            });
-            const result = await insertUser(trimmedName, trimmedEmail, trimmedTelephone, trimmedPassword);
-            console.log('Usuário salvo com sucesso:', { nome: trimmedName, email: trimmedEmail, telefone: trimmedTelephone });
+            const result = await insertUser(name, email, telephone, password, confirmPassword);
+            console.log('Usuário salva com sucesso!', { name, email, telephone, password });
             navigation.navigate('Login');
         } catch (error) {
             console.error('Erro ao salvar usuário', error);
-            Alert.alert('Erro', 'Ocorreu um erro ao registrar o usuário.');
         }
     };
 

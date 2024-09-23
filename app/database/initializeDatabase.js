@@ -47,6 +47,15 @@ export const initializeDatabase = async () => {
             estado TEXT
         );
     `);
+
+    await db.execAsync(`
+        PRAGMA journal_mode = WAL;
+        CREATE TABLE IF NOT EXISTS turmas (
+            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            turma TEXT NOT NULL,
+            escola TEXT NOT NULL
+        );
+    `);
 }
 
 export function getDatabase() {

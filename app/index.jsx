@@ -23,7 +23,7 @@ export default function Index() {
 
     return (
         <>
-            <StatusBar hidden={true} />
+            <StatusBar hidden={false} />
             <Routes />
         </>
     )

@@ -8,6 +8,7 @@ import ButtonWaterGreen from '../../../components/ButtonWaterGreen';
 import { insertStudent} from '../../../database/studentTable';
 import { initializeDatabase } from '../../../database/initializeDatabase';
 import { getSchools } from '../../../database/schoolTable';
+import { getClasse } from '../../../database/classesTable';
 import { useNavigation } from 'expo-router';
 import ApiCep from '../../../services/apiCep';
 import Header from '../../../components/Header';
@@ -25,6 +26,7 @@ const RegisterStudents = () => {
     const [city, setCity] = useState('');
     const [uf, setUf] = useState('');
     const [schools, setSchools] = useState([]);
+    const [classes, setClasses] = useState([]);
 
     const navigation = useNavigation();
 
@@ -42,12 +44,27 @@ const RegisterStudents = () => {
         }
     };
 
+    const loadClasses = async () => {
+        try {
+            const result = await getClasse();
+            console.log("Resultado da função getClasse:", result); // Verifique o que está sendo retornado
+            const formattedClasses = result.map(classeItem => ({
+                label: classeItem.turma, // Correção: Usar 'classeItem.turma'
+                value: classeItem.id,    // Correção: Usar 'classeItem.id'
+            }));
+            setClasses(formattedClasses); // Correção: Usar 'setClassesList'            
+        } catch (error) {
+            console.error('Erro ao buscar turmas:', error);
+        }
+    };
+
     useEffect(() => {
         const init = async () => {
             try {
                 await initializeDatabase();
                 console.log('Database initialized successfully');
                 await loadSchools(); // Carrega as escolas após a inicialização do banco
+                await loadClasses();
             } catch (error) {
                 console.error('Failed to initialize database:', error);
             }
@@ -79,9 +96,11 @@ const RegisterStudents = () => {
         
         const selectedSchool = schools.find(s => s.value === school);
         const schoolName = selectedSchool ? selectedSchool.label : '';
+        const selectedClasse = classes.find(s => s.value === classe);
+        const classeName = selectedClasse ? selectedClasse.label : '';
 
         try {
-            const result = await insertStudent(name, schoolName, classe, responsibleName, responsibleTelephone, cep, street, neighborhood, city, uf);
+            const result = await insertStudent(name, schoolName, classeName, responsibleName, responsibleTelephone, cep, street, neighborhood, city, uf);
             console.log('Aluno salvo com sucesso!', result);
             navigation.navigate('Students');
         } catch (error) {
@@ -134,9 +153,31 @@ const RegisterStudents = () => {
                     </View>
                     <View style={styles.containerForm}>
                         <Text style={styles.textInput}>Turma:</Text>
-                        <Input
+                        <RNPickerSelect
+                            onValueChange={(value) => setClasse(value)}
+                            items={classes} // Agora o array estará formatado corretamente
+                            placeholder={{ label: "Selecione uma turma", value: null }}
                             value={classe}
-                            onChangeText={setClasse}
+                            style={{
+                                inputIOS: {
+                                    height: 40,
+                                    width: 300,
+                                    padding: 10,
+                                    borderWidth: 0.5,
+                                    borderColor: "#3F3F3C",
+                                    borderRadius: 20,
+                                    fontSize: 18,
+                                },
+                                inputAndroid: {
+                                    height: 40,
+                                    width: 300,
+                                    padding: 10,
+                                    borderWidth: 0.5,
+                                    borderColor: "#3F3F3C",
+                                    borderRadius: 20,
+                                    fontSize: 18,
+                                },
+                            }}
                         />
                     </View>
                     <View style={styles.containerForm}>
