@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { useNavigation } from 'expo-router';
 
@@ -6,7 +6,6 @@ import ButtonWaterGreen from '../../components/ButtonWaterGreen';
 import Header from '../../components/Header';
 
 const Home = () => {
-
     const navigation = useNavigation();
 
     const handleNavSchools = () => {
@@ -25,38 +24,52 @@ const Home = () => {
         navigation.navigate("Activities");
     };
 
+    const handleNavRegistrations = () => {
+        navigation.navigate("Registrations");
+    };
+
     return (
-       <>
-        <Header />
-        <View style={styles.container}>
-            <View style={styles.line} />
-            <ScrollView> 
-                <View style={styles.containerOptions}>
-                    <Image source={require("../../../assets/images/Escolas.jpeg")} style={styles.images}/>
-                    <ButtonWaterGreen 
-                        title="Escolas"
-                        onPress={handleNavSchools} />
-                </View>
-                <View style={styles.containerOptions}>
-                    <Image source={require("../../../assets/images/Turmas.jpeg")} style={styles.images}/>
-                    <ButtonWaterGreen
-                        title="Turmas"
-                        onPress={handleNavClasses} />
-                </View>
-                <View style={styles.containerOptions}>
-                    <Image source={require("../../../assets/images/Alunos.jpeg")} style={styles.images}/>
-                    <ButtonWaterGreen
-                        title="Alunos"
-                        onPress={handleNavStudents} />
-                </View>
-                <View style={styles.containerOptions}>
-                    <Image source={require("../../../assets/images/Atividades.png")} style={styles.images}/>
-                    <ButtonWaterGreen
-                        title="Atividades"
-                        onPress={handleNavActivities} />
-                </View>
-            </ScrollView>
-        </View>
+        <>
+            <Header />
+            <View style={styles.container}>
+                <ScrollView> 
+                    <View style={styles.containerOptions}>
+                        <View style={styles.containerOptionsFlex}>
+                            <Image source={require("../../../assets/images/Escolas.png")} style={styles.images} />
+                            <ButtonWaterGreen 
+                                title="Escolas"
+                                onPress={handleNavSchools} />
+                        </View>
+                        <View style={styles.containerOptionsFlex}>
+                            <Image source={require("../../../assets/images/Turmas.png")} style={styles.images} />
+                            <ButtonWaterGreen
+                                title="Turmas"
+                                onPress={handleNavClasses} />
+                        </View>
+                    </View>
+
+                    <View style={styles.containerOptions}>
+                        <View style={styles.containerOptionsFlex}>
+                            <Image source={require("../../../assets/images/Alunos.png")} style={styles.images} />
+                            <ButtonWaterGreen
+                                title="Alunos"
+                                onPress={handleNavStudents} />
+                        </View>
+                        <View style={styles.containerOptionsFlex}>
+                            <Image source={require("../../../assets/images/Atividades.png")} style={styles.images} />
+                            <ButtonWaterGreen
+                                title="Atividades"
+                                onPress={handleNavActivities} />
+                        </View>
+                    </View>
+                    <View style={styles.containerOptionsFlex}>
+                            <Image source={require("../../../assets/images/Cadastros.png")} style={styles.images} />
+                            <ButtonWaterGreen
+                                title="Cadastros"
+                                onPress={handleNavRegistrations} />
+                        </View>
+                </ScrollView>
+            </View>
         </>
     );
 };
@@ -67,19 +80,23 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
         alignItems: "center",
     },
-    line: {
-        width: "90%",
-        height: 1,
-        backgroundColor: "#51B59F",
-        margin: 25,
-    },
     containerOptions: {
+        marginTop: 20,
+        flexDirection: 'row', // Alinha os itens em linha
+        justifyContent: 'space-around', // Distribui espaço entre os itens
+        marginBottom: 20, // Adiciona espaço entre linhas
+        width: '100%', // Garante que ocupe toda a largura
+    },
+    containerOptionsFlex: {
         alignItems: "center",
+        flex: 1,
+        marginHorizontal: 50, // Adiciona espaço entre as colunas
     },
     images: {
-        width: 250,
+        marginBottom: -20,
+        width: 100, // Ajuste para que as imagens não ocupem muito espaço
         height: 100,
     },
 });
 
-export default Home
+export default Home;

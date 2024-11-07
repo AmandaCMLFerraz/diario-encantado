@@ -39,12 +39,12 @@ export async function deleteClasse(id) {
     }
 }
 
-export async function updateClasse(classe, school) {
+export async function updateClasse(classe, school, classeId) {
     const db = getDatabase();
     try {
         const result = await db.runAsync(
-            'UPDATE turmas SET classe = ?, school = ?',
-            classe, school
+            'UPDATE turmas SET turma = ?, escola = ? WHERE id = ?',
+            classe, school, classeId
         );
         return result;
     } catch (error) {
@@ -52,3 +52,4 @@ export async function updateClasse(classe, school) {
         throw error;
     }
 }
+

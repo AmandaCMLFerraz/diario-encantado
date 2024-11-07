@@ -11,6 +11,10 @@ import Students from '../pages/Students'
 import RegisterStudent from '../pages/Students/RegisterStudent'
 import Classes from '../pages/Classes'
 import RegisterClasses from '../pages/Classes/RegisterClasses'
+import Registrations from '../pages/Registrations';
+import Activities from '../pages/Activities'
+import RegisterActivities from '../pages/Activities/RegisterActivities';
+import EditClasses from '../pages/Classes/EditClasses';
 
 
 
@@ -28,8 +32,11 @@ export default function Routes () {
             <Stack.Screen name="Students" component={Students} />
             <Stack.Screen name="RegisterStudent" component={RegisterStudent} />
             <Stack.Screen name="Classes" component={Classes} />
+            <Stack.Screen name="EditClasses" component={EditClasses} />
             <Stack.Screen name="RegisterClasses" component={RegisterClasses} />
-
+            <Stack.Screen name="Registrations" component={Registrations} />
+            <Stack.Screen name="Activities" component={Activities} />
+            <Stack.Screen name="RegisterActivities" component={RegisterActivities} />
         </Stack.Navigator>
     );
 }

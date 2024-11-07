@@ -45,9 +45,9 @@ const Classes = () => {
         navigation.navigate("RegisterClasses");
     };
 
-    // const handleNavEditSchool = () => {
-    //     navigation.navigate("EditSchool");
-    // };
+    const handleNavEditClasses = () => {
+        navigation.navigate("EditClasses");
+    };
 
     const renderClasses = ({ item }) => {
         return (
@@ -58,7 +58,7 @@ const Classes = () => {
                         <Icon
                             name='edit'
                             color='#3F3F3C'
-                            // onPress={handleNavEditSchool}
+                            onPress={() => handleNavEditClasses(item.id)}
                         />
                         <Icon
                             name='delete'
