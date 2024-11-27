@@ -1,6 +1,7 @@
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import ButtonPlus from '../../components/ButtonPlus';
-import { useFocusEffect, useNavigation } from 'expo-router';
+import { useFocusEffect } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 import { useState, useCallback } from 'react';
 import { Icon } from '@rneui/themed';
 

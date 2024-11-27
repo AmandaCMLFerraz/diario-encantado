@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native"
 import Header from "../../components/Header"
 import ButtonPlus from "../../components/ButtonPlus"
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Activities = () => {

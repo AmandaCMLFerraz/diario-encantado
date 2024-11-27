@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 
 import Input from '../../components/Input'
 import ButtonWaterGreen from '../../components/ButtonWaterGreen'
@@ -9,6 +9,10 @@ import { initializeDatabase } from '../../database/initializeDatabase';
 
 const Register = () => {
 
+    useEffect(() => {
+        console.log('Tela de Registro carregada');
+    }, []);
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [telephone, setTelephone] = useState('');

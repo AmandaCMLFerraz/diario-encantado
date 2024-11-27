@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, ScrollView, Alert } from 'react-native';
 import { Button } from '@rneui/themed';
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
+
 
 import { initializeDatabase } from '../../database/initializeDatabase';
 import { getUser } from '../../database/usersTable';
@@ -14,6 +15,7 @@ const Login = () => {
     const navigation = useNavigation();
 
     const handleNavRegister = () => {
+        console.log("Navegando para a tela de Registro");
         navigation.navigate("Register");
     };
 

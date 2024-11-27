@@ -1,7 +1,8 @@
 import { View, StyleSheet, FlatList, Text } from 'react-native';
 import ButtonPlus from '../../components/ButtonPlus';
-import { useFocusEffect, useNavigation } from 'expo-router';
-import { useState, useCallback } from 'react';
+import { useFocusEffect } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
+import { useState, useCallback, useEffect } from 'react';
 import { Icon } from '@rneui/themed';
 
 import { deleteClasse, getClasse } from '../../database/classesTable';
@@ -26,11 +27,10 @@ const Classes = () => {
         }
     }, []);
 
-    useFocusEffect(
-        useCallback(() => {
-            fetchClasses();
-        }, [fetchClasses])
-    );
+    useEffect(() => {
+        fetchClasses(); // Isso irá rodar sempre que o componente for montado
+    }, [fetchClasses]); // Ou depende de alguma outra variável
+    
 
     const handleDeleteClasse = async (id) => {
         try {
@@ -46,7 +46,7 @@ const Classes = () => {
     };
 
     const handleNavEditClasses = () => {
-        navigation.navigate("EditClasses");
+        navigation.navigate("EditClasses", {id});
     };
 
     const renderClasses = ({ item }) => {
@@ -82,6 +82,7 @@ const Classes = () => {
                     data={classes}
                     renderItem={renderClasses}
                     keyExtractor={(item) => item.id.toString()} // Supondo que cada escola tem um 'id'
+                    style={{ flex: 1 }}
                 />
                 <View style={styles.containerButton}>
                     <ButtonPlus onPress={handleNavRegisterClasses}/>

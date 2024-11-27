@@ -9,7 +9,7 @@ import { insertStudent} from '../../../database/studentTable';
 import { initializeDatabase } from '../../../database/initializeDatabase';
 import { getSchools } from '../../../database/schoolTable';
 import { getClasse } from '../../../database/classesTable';
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 import ApiCep from '../../../services/apiCep';
 import Header from '../../../components/Header';
 

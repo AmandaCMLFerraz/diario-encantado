@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 
 import ButtonWaterGreen from '../../components/ButtonWaterGreen';
 import Header from '../../components/Header';

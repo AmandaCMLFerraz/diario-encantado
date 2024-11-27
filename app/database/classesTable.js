@@ -52,4 +52,3 @@ export async function updateClasse(classe, school, classeId) {
         throw error;
     }
 }
-

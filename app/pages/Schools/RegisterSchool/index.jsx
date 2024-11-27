@@ -7,7 +7,7 @@ import ButtonWaterGreen from '../../../components/ButtonWaterGreen';
 
 import { insertSchool} from '../../../database/schoolTable';
 import { initializeDatabase } from '../../../database/initializeDatabase';
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 import ApiCep from '../../../services/apiCep';
 import Header from '../../../components/Header';
 

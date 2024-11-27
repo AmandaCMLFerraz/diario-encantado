@@ -8,7 +8,7 @@ import ButtonWaterGreen from '../../../components/ButtonWaterGreen';
 import { updateClasse } from '../../../database/classesTable';
 import { initializeDatabase } from '../../../database/initializeDatabase';
 import { getSchools } from '../../../database/schoolTable';
-import { useNavigation } from 'expo-router';
+import { useNavigation } from '@react-navigation/native';
 import Header from '../../../components/Header';
 
 const EditClasses = () => {
