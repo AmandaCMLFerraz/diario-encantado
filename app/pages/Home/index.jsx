@@ -28,51 +28,68 @@ const Home = () => {
         navigation.navigate("Registrations");
     };
 
-    return (
-        <>
-            <Header />
-            <View style={styles.container}>
-                <ScrollView> 
-                    <View style={styles.containerOptions}>
-                        <View style={styles.containerOptionsFlex}>
-                            <Image source={require("../../../assets/images/Escolas.png")} style={styles.images} />
-                            <ButtonWaterGreen 
-                                title="Escolas"
-                                onPress={handleNavSchools} />
-                        </View>
-                        <View style={styles.containerOptionsFlex}>
-                            <Image source={require("../../../assets/images/Turmas.png")} style={styles.images} />
-                            <ButtonWaterGreen
-                                title="Turmas"
-                                onPress={handleNavClasses} />
-                        </View>
-                    </View>
+    const handleNavPortfolio = () => {
+        navigation.navigate("Portfolio");
+    };
 
-                    <View style={styles.containerOptions}>
-                        <View style={styles.containerOptionsFlex}>
-                            <Image source={require("../../../assets/images/Alunos.png")} style={styles.images} />
-                            <ButtonWaterGreen
-                                title="Alunos"
-                                onPress={handleNavStudents} />
-                        </View>
-                        <View style={styles.containerOptionsFlex}>
-                            <Image source={require("../../../assets/images/Atividades.png")} style={styles.images} />
-                            <ButtonWaterGreen
-                                title="Atividades"
-                                onPress={handleNavActivities} />
-                        </View>
+   return (
+    <>
+        <Header />
+        <View style={styles.container}>
+            <ScrollView> 
+
+                <View style={styles.containerOptions}>
+                    <View style={styles.containerOptionsFlex}>
+                        <Image source={require("../../../assets/images/Escolas.png")} style={styles.images} />
+                        <ButtonWaterGreen 
+                            title="Escolas"
+                            onPress={handleNavSchools} />
                     </View>
                     <View style={styles.containerOptionsFlex}>
-                            <Image source={require("../../../assets/images/Cadastros.png")} style={styles.images} />
-                            <ButtonWaterGreen
-                                title="Cadastros"
-                                onPress={handleNavRegistrations} />
-                        </View>
-                </ScrollView>
-            </View>
-        </>
-    );
+                        <Image source={require("../../../assets/images/Turmas.png")} style={styles.images} />
+                        <ButtonWaterGreen
+                            title="Turmas"
+                            onPress={handleNavClasses} />
+                    </View>
+                </View>
+
+                <View style={styles.containerOptions}>
+                    <View style={styles.containerOptionsFlex}>
+                        <Image source={require("../../../assets/images/Alunos.png")} style={styles.images} />
+                        <ButtonWaterGreen
+                            title="Alunos"
+                            onPress={handleNavStudents} />
+                    </View>
+                    <View style={styles.containerOptionsFlex}>
+                        <Image source={require("../../../assets/images/Atividades.png")} style={styles.images} />
+                        <ButtonWaterGreen
+                            title="Atividades"
+                            onPress={handleNavActivities} />
+                    </View>
+                </View>
+
+                    <View style={styles.containerOptions}>
+                    <View style={styles.containerOptionsFlex}>
+                        <Image source={require("../../../assets/images/Cadastros.png")} style={styles.images} />
+                        <ButtonWaterGreen
+                            title="Cadastros"
+                            onPress={handleNavRegistrations} />
+                    </View>
+                    <View style={styles.containerOptionsFlex}>
+                        <Image source={require("../../../assets/images/Portfolio.png")} style={styles.images} />
+                        <ButtonWaterGreen
+                            title="Portfolio"
+                            onPress={handleNavPortfolio} />
+                    </View>
+                    </View>
+
+            </ScrollView>
+        </View>
+    </>
+);
+
 };
+
 
 const styles = StyleSheet.create({
     container: {
