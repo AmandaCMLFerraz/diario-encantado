@@ -3,9 +3,7 @@ import { View, Text, StyleSheet, Image, TextInput, ScrollView, Alert } from 'rea
 import { Button } from '@rneui/themed';
 import { useNavigation } from '@react-navigation/native';
 
-
 import { initializeDatabase } from '../../database/initializeDatabase';
-import { getUser } from '../../database/usersTable';
 
 const Login = () => {
 
@@ -25,7 +23,7 @@ const Login = () => {
 
     const handleNavRecoverPassword = () => {
         navigation.navigate("RecoverPassword")
-    }
+    };
 
     useEffect(() => {
         const init = async () => {
@@ -39,34 +37,30 @@ const Login = () => {
         init();
     }, []);
 
+    // Usuário e senha pré-definidos
+    const predefinedUser = {
+        email: "a@a.com",
+        password: "qwe"
+    };
+
     const loginApp = async () => {
         if (!email || !password) {
             Alert.alert('Erro', 'Por favor, preencha os campos de e-mail e senha.');
             return;
         }
-    
-        try {
-            console.log('Tentando fazer login com:', email);
-            const user = await getUser(email); 
-            if (user) {
-                if (user.senha === password) { // Atenção: Armazenar senhas em texto simples NÃO É RECOMENDADO
-                    console.log('Login bem-sucedido:', user);
-                    navigation.navigate('Home');
-                } else {
-                    Alert.alert('Erro', 'Senha incorreta.');
-                }
-            } else {
-                Alert.alert('Erro', 'Usuário não encontrado.');
-            }
-        } catch (error) {
-            console.error('Erro ao fazer login:', error);
-            Alert.alert('Erro', 'Ocorreu um erro ao tentar fazer login.');
+
+        // Simulação de login com o usuário pré-definido
+        if (email === predefinedUser.email && password === predefinedUser.password) {
+            console.log('Login bem-sucedido');
+            navigation.navigate('Home');
+        } else {
+            Alert.alert('Erro', 'Usuário ou senha incorretos.');
         }
     };
 
     return (
         <View style={styles.container}>
-            <Image source={require("../../../assets/images/Logo.png")} style={styles.logo}/>
+            <Image source={require("../../../assets/images/Logo.png")} style={styles.logo} />
             <View style={styles.containerLogin}>
                 <ScrollView contentContainerStyle={styles.scrollContainer}>
                     <TextInput 
@@ -74,18 +68,18 @@ const Login = () => {
                         placeholder="E-mail" 
                         placeholderTextColor="#9FA3A6" 
                         keyboardType='email-address'
-                        value={email}               // Vincula o valor do TextInput ao estado email
-                        onChangeText={setEmail}     // Atualiza o estado email quando o usuário digita
-                        autoCapitalize="none"       // Opcional: Evita capitalização automática
-                        autoCorrect={false}         // Opcional: Desativa correção automática
-                        />
+                        value={email}
+                        onChangeText={setEmail}
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                    />
                     <TextInput 
                         style={styles.input} 
                         placeholder="Senha" 
                         placeholderTextColor="#9FA3A6"
                         secureTextEntry={true}  
-                        value={password}            // Vincula o valor do TextInput ao estado password
-                        onChangeText={setPassword}  // Atualiza o estado password quando o usuário digita
+                        value={password}
+                        onChangeText={setPassword}
                     />
                     <Button 
                         buttonStyle={styles.button} 
@@ -95,7 +89,6 @@ const Login = () => {
                     />
                     <Text style={styles.textPassword} onPress={handleNavRecoverPassword}>Esqueceu a senha?</Text>
                     <View style={styles.line} />
-                    
                     <View style={styles.containerText}>
                         <Text style={styles.text}>Não tem conta?</Text>
                         <Text style={styles.textRegister} onPress={handleNavRegister}>Cadastre-se</Text>
@@ -124,14 +117,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#51B59F",
         width: "100%",
         alignItems: "center",
-        justifyContent: "center", // Adicionado para centralizar verticalmente
+        justifyContent: "center",
         borderTopLeftRadius: 150,
     },
     scrollContainer: {
         flexGrow: 1,
-        justifyContent: "center", // Centraliza o conteúdo verticalmente
+        justifyContent: "center",
         alignItems: "center",
-        paddingBottom: 20, // Ajuste conforme necessário
+        paddingBottom: 20,
     },
     input: {
         width: 300,
@@ -173,11 +166,11 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: "#ffffff",
     },
-    textRegister:{
+    textRegister: {
         fontSize: 18,
         color: "#ffffff",
         fontWeight: "600",
     }
 });
 
-export default Login
+export default Login;

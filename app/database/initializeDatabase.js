@@ -56,6 +56,17 @@ export const initializeDatabase = async () => {
             escola TEXT NOT NULL
         );
     `);
+
+    await db.execAsync(`
+        PRAGMA journal_mode = WAL;
+        CREATE TABLE IF NOT EXISTS atividades (
+            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            nome TEXT NOT NULL,
+            data TEXT NOT NULL,
+            descricao TEXT NOT NULL,
+            imagem TEXT
+        );
+    `);
 }
 
 export function getDatabase() {

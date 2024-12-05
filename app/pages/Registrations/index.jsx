@@ -20,7 +20,6 @@ const Registrations = () => {
         navigation.navigate('Activities'); 
     };
     
-    
 
     return(
         <>
